@@ -22,4 +22,11 @@
     <PackageReference Include="System.Data.OleDb" Version="9.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Home\Remove.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

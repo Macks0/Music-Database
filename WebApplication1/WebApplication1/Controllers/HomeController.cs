@@ -84,6 +84,30 @@ namespace WebApplication1.Controllers
             return filteredSongs;
         }
 
+        public IActionResult Remove(string artist, int? playlistId, string genre)
+        {
+            DBGateway aGateway = new DBGateway();
+
+            // Fetching the lists for the dropdowns
+            List<Artist> aListOfArtists = aGateway.GetArtist();
+            List<Playlist> aListOfPlaylists = aGateway.GetPlaylist();
+            List<Song> aListOfSongs = aGateway.GetSong();
+            List<string> aListOfGenres = aListOfSongs.Select(s => s.Genre).Distinct().ToList();
+
+            // Filter songs based on parameters
+            List<SongViewModel> filteredSongs = FilterSongs(artist, playlistId?.ToString(), null, genre);
+
+            // Passing data to the view using ViewBag
+            ViewBag.ListOfArtists = aListOfArtists;
+            ViewBag.ListOfPlaylists = aListOfPlaylists;
+            ViewBag.ListOfSongs = aListOfSongs;
+            ViewBag.ListOfGenres = aListOfGenres;
+            ViewBag.FilteredSongs = filteredSongs;
+
+            return View();
+        }
+
+
 
 
 
