@@ -292,6 +292,33 @@ namespace WebApplication1.Controllers
             }
         }
 
+        public bool DeleteArtist(int artistId)
+        {
+            string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\maxes\source\Database\Database511.accdb;";
+
+            try
+            {
+                using (var connection = new OleDbConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "DELETE FROM Artist WHERE ArtistID = @ArtistID";
+
+                    using (var command = new OleDbCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@ArtistID", artistId);
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        return rowsAffected > 0; // Returns true if at least one row was deleted
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($" Error deleting artist: {ex.Message}");
+                return false;
+            }
+        }
+
 
 
 
