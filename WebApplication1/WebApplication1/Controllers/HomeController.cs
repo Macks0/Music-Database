@@ -87,33 +87,140 @@ namespace WebApplication1.Controllers
         public IActionResult Remove(string artist, int? playlistId, string genre)
         {
             DBGateway aGateway = new DBGateway();
+            List<SongViewModel> songList = new List<SongViewModel>();
 
-            // Fetching the lists for the dropdowns
+            // Start the base query for fetching songs, artist, playlist, and genre info
+            string query = @"
+        SELECT s.SongID, s.SongTitle, s.Genre, a.ArtistName, p.PlaylistName
+        FROM (((Song s
+        LEFT JOIN ArtistSong asg ON s.SongID = asg.SongID)
+        LEFT JOIN Artist a ON asg.ArtistID = a.ArtistID)
+        LEFT JOIN PlaylistSong ps ON s.SongID = ps.SongID)
+        LEFT JOIN Playlist p ON ps.PlaylistID = p.PlaylistID";
+
+            // Add WHERE clauses dynamically based on the filters
+            List<string> filters = new List<string>();
+            if (!string.IsNullOrEmpty(genre))
+            {
+                filters.Add("s.Genre = @Genre");
+            }
+            if (!string.IsNullOrEmpty(artist))
+            {
+                filters.Add("a.ArtistName = @Artist");
+            }
+            if (playlistId.HasValue)
+            {
+                filters.Add("p.PlaylistID = @PlaylistId");
+            }
+
+            if (filters.Any())
+            {
+                query += " WHERE " + string.Join(" AND ", filters);
+            }
+
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            using (OleDbCommand command = new OleDbCommand(query, connection))
+            {
+                // Add parameters for the filters
+                if (!string.IsNullOrEmpty(genre))
+                {
+                    command.Parameters.AddWithValue("@Genre", genre);
+                }
+                if (!string.IsNullOrEmpty(artist))
+                {
+                    command.Parameters.AddWithValue("@Artist", artist);
+                }
+                if (playlistId.HasValue)
+                {
+                    command.Parameters.AddWithValue("@PlaylistId", playlistId.Value);
+                }
+
+                connection.Open();
+                using (OleDbDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        songList.Add(new SongViewModel
+                        {
+                            SongId = Convert.ToInt32(reader["SongID"]),
+                            SongTitle = reader["SongTitle"].ToString(),
+                            Genre = reader["Genre"].ToString(),
+                            ArtistName = reader["ArtistName"].ToString(),
+                            PlaylistName = reader["PlaylistName"].ToString(),
+                        });
+                    }
+                }
+            }
+
+            // Get the lists for the dropdowns
             List<Artist> aListOfArtists = aGateway.GetArtist();
             List<Playlist> aListOfPlaylists = aGateway.GetPlaylist();
             List<Song> aListOfSongs = aGateway.GetSong();
             List<string> aListOfGenres = aListOfSongs.Select(s => s.Genre).Distinct().ToList();
 
-            // Filter songs based on parameters
-            List<SongViewModel> filteredSongs = FilterSongs(artist, playlistId?.ToString(), null, genre);
-
-            // Passing data to the view using ViewBag
+            // Pass data to ViewBag
             ViewBag.ListOfArtists = aListOfArtists;
             ViewBag.ListOfPlaylists = aListOfPlaylists;
-            ViewBag.ListOfSongs = aListOfSongs;
             ViewBag.ListOfGenres = aListOfGenres;
-            ViewBag.FilteredSongs = filteredSongs;
+            ViewBag.SelectedGenre = genre;
+            ViewBag.SelectedArtist = artist;
+            ViewBag.SelectedPlaylist = playlistId;
 
-            return View();
+            // Ensure FilteredSongs is initialized
+            ViewBag.FilteredSongs = songList;
+
+            return View();  // Passes the filtered songs to the view
         }
 
 
 
 
+        [HttpPost]
+        public IActionResult Delete(int songId, int playlistId)
+        {
+            DBGateway aGateway = new DBGateway();
+
+            try
+            {
+                // Step 1: Remove the song from the playlist (Playlist_Song table)
+                bool playlistSongDeleted = aGateway.DeleteSongFromPlaylist(songId, playlistId);
+                if (!playlistSongDeleted)
+                {
+                    return NotFound();  // Handle failure case if song is not found in the playlist
+                }
+
+                // Step 2: Delete the song from the Song table
+                bool songDeleted = aGateway.DeleteSong(songId);
+                if (!songDeleted)
+                {
+                    return NotFound();  // Handle failure case if song deletion fails
+                }
+
+                // Step 3: Check if the artist is still linked to other songs
+                int artistId = aGateway.GetArtistIdBySongId(songId);
+                if (artistId != 0)
+                {
+                    bool artistDeleted = aGateway.DeleteArtistIfNoSongs(artistId);
+                    if (!artistDeleted)
+                    {
+                        return NotFound();  // Handle failure case if artist deletion fails
+                    }
+                }
+
+                // Redirect to the "Update" page after successful deletion
+                return RedirectToAction("Update");  // Or any other page to show updated data
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return View("Error");  // Handle errors with an appropriate error page
+            }
+        }
+
+
+
 
         private string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\Deja Hang\\Downloads\\Database511.accdb;User Id=admin;Password=;";
-
-        // GET: Add
         public ActionResult Add()
         {
             return View();
@@ -316,7 +423,122 @@ namespace WebApplication1.Controllers
             }
         }
 
+        public IActionResult Update(string genre, string artist, int? playlistId)
+        {
+            DBGateway aGateway = new DBGateway();
+            List<SongViewModel> songList = new List<SongViewModel>();
 
+            // Start the base query
+            string query = @"
+                SELECT s.SongID, s.SongTitle, s.Genre, a.ArtistName, p.PlaylistName
+                FROM (((Song s
+                LEFT JOIN ArtistSong asg ON s.SongID = asg.SongID)
+                LEFT JOIN Artist a ON asg.ArtistID = a.ArtistID)
+                LEFT JOIN PlaylistSong ps ON s.SongID = ps.SongID)
+                LEFT JOIN Playlist p ON ps.PlaylistID = p.PlaylistID";
+
+            // Add WHERE clauses dynamically based on the filters
+            List<string> filters = new List<string>();
+            if (!string.IsNullOrEmpty(genre))
+            {
+                filters.Add("s.Genre = @Genre");
+            }
+            if (!string.IsNullOrEmpty(artist))
+            {
+                filters.Add("a.ArtistName = @Artist");
+            }
+            if (playlistId.HasValue)
+            {
+                filters.Add("p.PlaylistID = @PlaylistId");
+            }
+
+            if (filters.Any())
+            {
+                query += " WHERE " + string.Join(" AND ", filters);
+            }
+
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            using (OleDbCommand command = new OleDbCommand(query, connection))
+            {
+                // Add parameters for the filters
+                if (!string.IsNullOrEmpty(genre))
+                {
+                    command.Parameters.AddWithValue("@Genre", genre);
+                }
+                if (!string.IsNullOrEmpty(artist))
+                {
+                    command.Parameters.AddWithValue("@Artist", artist);
+                }
+                if (playlistId.HasValue)
+                {
+                    command.Parameters.AddWithValue("@PlaylistId", playlistId.Value);
+                }
+
+                connection.Open();
+                using (OleDbDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        songList.Add(new SongViewModel
+                        {
+                            SongId = Convert.ToInt32(reader["SongID"]),
+                            SongTitle = reader["SongTitle"].ToString(),
+                            Genre = reader["Genre"].ToString(),
+                            ArtistName = reader["ArtistName"].ToString(),
+                            PlaylistName = reader["PlaylistName"].ToString(),
+                        });
+                    }
+                }
+            }
+
+            // Get the lists for the dropdowns
+            List<Artist> aListOfArtists = aGateway.GetArtist();
+            List<Playlist> aListOfPlaylists = aGateway.GetPlaylist();
+            List<Song> aListOfSongs = aGateway.GetSong();
+            List<string> aListOfGenres = aListOfSongs.Select(s => s.Genre).Distinct().ToList();
+
+            // Passing data to the view using ViewBag
+            ViewBag.ListOfArtists = aListOfArtists;
+            ViewBag.ListOfPlaylists = aListOfPlaylists;
+            ViewBag.ListOfGenres = aListOfGenres;
+            ViewBag.SelectedGenre = genre;
+            ViewBag.SelectedArtist = artist;
+            ViewBag.SelectedPlaylist = playlistId;
+
+            return View(songList);  // Ensure songList is passed to the view
+        }
+
+
+        [HttpPost]
+        public IActionResult Edit(SongViewModel songViewModel)
+        {
+            if (ModelState.IsValid) // Ensure the model state is valid (e.g., all required fields are filled)
+            {
+                DBGateway aGateway = new DBGateway();
+
+                // Update song details in the Song table
+                aGateway.UpdateSong(new Song
+                {
+                    SongId = songViewModel.SongId,
+                    SongTitle = songViewModel.SongTitle,
+                    Genre = songViewModel.Genre
+                });
+
+                // Update artist relationship in the Artist_Song join table
+                int artistId = aGateway.GetOrCreateArtist(songViewModel.ArtistName); // Get or create artist by name
+                aGateway.UpdateArtistSong(songViewModel.SongId, artistId); // Update the Artist_Song table
+
+                // Update playlist relationship in the Playlist_Song join table
+                int playlistId = aGateway.GetPlaylistIdByName(songViewModel.PlaylistName); // Get playlist ID
+                aGateway.UpdatePlaylistSong(songViewModel.SongId, playlistId); // Update the Playlist_Song table
+
+                // Redirect to the Update page to view the updated list of songs
+                return RedirectToAction("Update");
+            }
+
+            // If the form is invalid, return the user to the edit view with the model data
+            return View(songViewModel);
+        }
 
 
 

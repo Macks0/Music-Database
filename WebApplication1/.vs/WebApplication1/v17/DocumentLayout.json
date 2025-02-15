@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Deja Hang\\AppData\\Local\\GitHubDesktop\\Music-Database\\WebApplication1\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{991EA10F-32DE-4882-BA08-A0986334A91B}|WebApplication1\\WebApplication1.csproj|c:\\users\\deja hang\\appdata\\local\\githubdesktop\\music-database\\webapplication1\\webapplication1\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{991EA10F-32DE-4882-BA08-A0986334A91B}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{991EA10F-32DE-4882-BA08-A0986334A91B}|WebApplication1\\WebApplication1.csproj|c:\\users\\deja hang\\appdata\\local\\githubdesktop\\music-database\\webapplication1\\webapplication1\\views\\home\\remove.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{991EA10F-32DE-4882-BA08-A0986334A91B}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\views\\home\\remove.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{991EA10F-32DE-4882-BA08-A0986334A91B}|WebApplication1\\WebApplication1.csproj|c:\\users\\deja hang\\appdata\\local\\githubdesktop\\music-database\\webapplication1\\webapplication1\\models\\dbgateway.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{991EA10F-32DE-4882-BA08-A0986334A91B}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\models\\dbgateway.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{991EA10F-32DE-4882-BA08-A0986334A91B}|WebApplication1\\WebApplication1.csproj|c:\\users\\deja hang\\appdata\\local\\githubdesktop\\music-database\\webapplication1\\webapplication1\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{991EA10F-32DE-4882-BA08-A0986334A91B}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{991EA10F-32DE-4882-BA08-A0986334A91B}|WebApplication1\\WebApplication1.csproj|c:\\users\\deja hang\\appdata\\local\\githubdesktop\\music-database\\webapplication1\\webapplication1\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{991EA10F-32DE-4882-BA08-A0986334A91B}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{991EA10F-32DE-4882-BA08-A0986334A91B}|WebApplication1\\WebApplication1.csproj|c:\\users\\deja hang\\appdata\\local\\githubdesktop\\music-database\\webapplication1\\webapplication1\\models\\songviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{991EA10F-32DE-4882-BA08-A0986334A91B}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\models\\songviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{991EA10F-32DE-4882-BA08-A0986334A91B}|WebApplication1\\WebApplication1.csproj|c:\\users\\deja hang\\appdata\\local\\githubdesktop\\music-database\\webapplication1\\webapplication1\\views\\home\\update.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{991EA10F-32DE-4882-BA08-A0986334A91B}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\views\\home\\update.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{991EA10F-32DE-4882-BA08-A0986334A91B}|WebApplication1\\WebApplication1.csproj|c:\\users\\deja hang\\appdata\\local\\githubdesktop\\music-database\\webapplication1\\webapplication1\\views\\home\\add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -34,65 +38,78 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SongViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Deja Hang\\AppData\\Local\\GitHubDesktop\\Music-Database\\WebApplication1\\WebApplication1\\Models\\SongViewModel.cs",
-              "RelativeDocumentMoniker": "WebApplication1\\Models\\SongViewModel.cs",
-              "ToolTip": "C:\\Users\\Deja Hang\\AppData\\Local\\GitHubDesktop\\Music-Database\\WebApplication1\\WebApplication1\\Models\\SongViewModel.cs",
-              "RelativeToolTip": "WebApplication1\\Models\\SongViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T02:31:10.487Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Remove.cshtml",
               "DocumentMoniker": "C:\\Users\\Deja Hang\\AppData\\Local\\GitHubDesktop\\Music-Database\\WebApplication1\\WebApplication1\\Views\\Home\\Remove.cshtml",
               "RelativeDocumentMoniker": "WebApplication1\\Views\\Home\\Remove.cshtml",
               "ToolTip": "C:\\Users\\Deja Hang\\AppData\\Local\\GitHubDesktop\\Music-Database\\WebApplication1\\WebApplication1\\Views\\Home\\Remove.cshtml",
               "RelativeToolTip": "WebApplication1\\Views\\Home\\Remove.cshtml",
-              "ViewState": "AgIAAMsAAAAAAAAAAAAAwNwAAABUAAAAAAAAAA==",
+              "ViewState": "AgIAAMsAAAAAAAAAAAAgwNQAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-02-14T02:25:55.131Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\Deja Hang\\AppData\\Local\\GitHubDesktop\\Music-Database\\WebApplication1\\WebApplication1\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "WebApplication1\\Controllers\\HomeController.cs",
               "ToolTip": "C:\\Users\\Deja Hang\\AppData\\Local\\GitHubDesktop\\Music-Database\\WebApplication1\\WebApplication1\\Controllers\\HomeController.cs",
               "RelativeToolTip": "WebApplication1\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAFkAAAAAAAAAAAAwwGwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAYwLEAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-12T21:16:08.509Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Deja Hang\\AppData\\Local\\GitHubDesktop\\Music-Database\\WebApplication1\\WebApplication1\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "WebApplication1\\Views\\Home\\Index.cshtml",
               "ToolTip": "C:\\Users\\Deja Hang\\AppData\\Local\\GitHubDesktop\\Music-Database\\WebApplication1\\WebApplication1\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "WebApplication1\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAALQAAAAAAAAAAAAQwNUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAK4AAAAAAAAAAAAAwLgAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-02-12T21:15:58.552Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DBGateway.cs",
+              "DocumentMoniker": "C:\\Users\\Deja Hang\\AppData\\Local\\GitHubDesktop\\Music-Database\\WebApplication1\\WebApplication1\\Models\\DBGateway.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Models\\DBGateway.cs",
+              "ToolTip": "C:\\Users\\Deja Hang\\AppData\\Local\\GitHubDesktop\\Music-Database\\WebApplication1\\WebApplication1\\Models\\DBGateway.cs",
+              "RelativeToolTip": "WebApplication1\\Models\\DBGateway.cs",
+              "ViewState": "AgIAAEsBAAAAAAAAAAAswHMBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-14T05:00:10.7Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "Update.cshtml",
+              "DocumentMoniker": "C:\\Users\\Deja Hang\\AppData\\Local\\GitHubDesktop\\Music-Database\\WebApplication1\\WebApplication1\\Views\\Home\\Update.cshtml",
+              "RelativeDocumentMoniker": "WebApplication1\\Views\\Home\\Update.cshtml",
+              "ToolTip": "C:\\Users\\Deja Hang\\AppData\\Local\\GitHubDesktop\\Music-Database\\WebApplication1\\WebApplication1\\Views\\Home\\Update.cshtml",
+              "RelativeToolTip": "WebApplication1\\Views\\Home\\Update.cshtml",
+              "ViewState": "AgIAAJgAAAAAAAAAAAAgwN0AAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-14T03:54:14.419Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Add.cshtml",
               "DocumentMoniker": "C:\\Users\\Deja Hang\\AppData\\Local\\GitHubDesktop\\Music-Database\\WebApplication1\\WebApplication1\\Views\\Home\\Add.cshtml",
               "RelativeDocumentMoniker": "WebApplication1\\Views\\Home\\Add.cshtml",
               "ToolTip": "C:\\Users\\Deja Hang\\AppData\\Local\\GitHubDesktop\\Music-Database\\WebApplication1\\WebApplication1\\Views\\Home\\Add.cshtml",
               "RelativeToolTip": "WebApplication1\\Views\\Home\\Add.cshtml",
-              "ViewState": "AgIAAIEAAAAAAAAAAAAAAJMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAgwJYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-02-13T02:13:42.342Z",
               "EditorCaption": ""
